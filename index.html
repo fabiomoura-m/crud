@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/records.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src="js/main.js" defer></script>
+    <title>CRUD</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="header-title">Cadastro de Clientes</h1>
+    </header>
+    <main>
+        <button class="button blue mobile" id="registerClient">Cadastrar Cliente</button>
+        <table id="tableClient" class="records">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Cidade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <!-- MODAL APAGAR -->
+        <div class="modal" id="modalExclude">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Excluir Cliente</h2>
+                </header>
+                <div id='warningDelete'>
+                </div>
+                <footer class="modal-footer">
+                    <button id="exclude" class="button red">Apagar</button>
+                    <button id="cancel2" class="button blue">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+        <!-- MODAL CRIAR E EDITAR -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Novo Cliente</h2>
+                </header>
+                <form class="modal-form" id="form">
+                    <input type="text" class="modal-field" data-index="new" id="name" placeholder="nome do cliente"
+                        required>
+                    <input type="email" class="modal-field" id="email" placeholder="e-mail do cliente" required>
+                    <input type="text" class="modal-field" id="phone" placeholder="celular do cliente" required>
+                    <input type="text" class="modal-field" id="city" placeholder="cidade do cliente" required>
+                </form>
+                <footer class="modal-footer">
+                    <button class="button green" id="save">Salvar</button>
+                    <button class="button blue" id="cancel">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Desenvolvido por Fabio Moura</p>
+    </footer>
+
+</body>
+
+</html>
