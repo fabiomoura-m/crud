@@ -11,6 +11,7 @@ const fieldName = document.getElementById('name');
 const fieldEmail = document.getElementById('email');
 const fieldPhone = document.getElementById('phone');
 const fieldCity = document.getElementById('city');
+let toDeleteIndex = null;
 
 const openModal = () => {
     modal.classList.add('active');
@@ -36,12 +37,14 @@ const setLocalStorage = dbClient =>
 //CRUD - create read update delete
 const deleteClient = index => {
     const dbClient = readClient();
+    console.log(index);
     dbClient.splice(index, 1);
     setLocalStorage(dbClient);
 };
 
 const updateClient = (index, client) => {
     const dbClient = readClient();
+    console.log(index, client);
     dbClient[index] = client;
     setLocalStorage(dbClient);
 };
@@ -126,12 +129,14 @@ const editClient = index => {
     openModal();
 };
 
-const confirmDeleteClient = index => {
-    buttonExclude.addEventListener('click', () => {
-        deleteClient(index);
-        updateTable();
-        closeModalWarning();
-    });
+const confirmDeleteClient = () => {
+    if (toDeleteIndex === null) {
+        return;
+    }
+    deleteClient(toDeleteIndex);
+    updateTable();
+    closeModalWarning();
+    toDeleteIndex = null;
 };
 
 const editOrDelete = event => {
@@ -147,7 +152,7 @@ const editOrDelete = event => {
             warningDelete.textContent = `Deseja realmente excluir o cliente ${client.nome}?`;
 
             openModalWarning();
-            confirmDeleteClient(index);
+            toDeleteIndex = index;
         }
     }
 };
@@ -162,3 +167,4 @@ document
     .querySelector('#tableClient > tbody')
     .addEventListener('click', editOrDelete);
 buttonCancelWarning.addEventListener('click', closeModalWarning);
+buttonExclude.addEventListener('click', confirmDeleteClient);
